@@ -24,7 +24,7 @@ tails_loss_per_dollar = -1
 
 bet_a = 1
 ev_a =  bet_a * ((prob_heads * heads_win_per_dollar) + (prob_tails * tails_loss_per_dollar))
-
+print("Problem 1: \n")
 print(f"Part a) EV of $1 bet: ${ev_a:.2f}")
 
 # part b) Expected value of betting $100
@@ -37,7 +37,7 @@ print(f"Part b) EV of $100 bet: ${ev_b:.2f}")
 bet_c = 100 # the amount you bet, + the amount you win, a net gain of 100 dollars. Since you get the money you bet back.
 new_bankroll = bank_roll + bet_c
 
-print(f"Part c) Your new bankroll: ${new_bankroll:.2f}")
+print(f"Part c) Your new bankroll: ${new_bankroll:.2f}\n")
 
 
 
@@ -54,9 +54,10 @@ avg_return = 0.0015
 std_dev = 0.012
 risk_free_rate = 0.0002
 
+print("Problem 2: \n")
 daily_sharpe_ratio = (avg_return - risk_free_rate)/ std_dev
 
-print(f"The daily sharpe ratio: ${daily_sharpe_ratio:.2f}")
+print(f"The daily sharpe ratio: ${daily_sharpe_ratio:.2f}\n")
 
 # Problem 3: Option Payoff 
 
@@ -70,12 +71,14 @@ Write a program that take X as input
 - calculates the profit loss
 - Payoff = max(Stock-Strike, 0) - premium
 """
-current_stock_price = float(input("Enter a number: "))
+current_stock_price = float(input("Enter a number: \n"))
 strike_price = 150
 premium = 5
+
+print("Problem 3: \n")
 payoff = max(current_stock_price - strike_price, 0) - premium
 
-print(f"The payoff is: ${payoff:.2f}")
+print(f"The payoff is: ${payoff:.2f}\n")
 
 
 # Problem 4 Compound Returns daily returns over 5 days is [0.02, -0.01, 0.03, 0.015, -0.005]
@@ -88,21 +91,18 @@ c) Which is higher and why?
 
 """
 
-# cumulative_return = (((1 + 0.02) * (1 + (-0.01)) * ( 1 + 0.03) * (1 + 0.015) * (1 + (-0.005))) - 1)
-# print(f"Cumulative return a): ${cumulative_return:.4%}")
-
-daily_returns = [0.02, -0.01, 0.03, 0.015, -0.005]
-cumulative_return = 1.0
-for r in daily_returns:
-    cumulative_return *= (1 + r)
-cumulative_return -= 1
+print("Problem 4: \n")
+cumulative_return = (((1 + 0.02) * (1 + (-0.01)) * ( 1 + 0.03) * (1 + 0.015) * (1 + (-0.005))) - 1)
 
 print(f"a) Cumulative return: {cumulative_return:.4%}")
 
 average_daily_return = (0.02 + (-0.01) + 0.03 + 0.015 + (-0.005))/5
-print(f"Average Daily Return b): ${average_daily_return:.4%}")
+print(f"b) Average Daily Return: ${average_daily_return:.4%}")
 
-print("The cumulative return is higher because it is cumulative or adding 1 to the daily returns, multiplying them together (instead of adding them) and then dividing by the total days.")
+print(f"\nc) The arithmetic average ({average_daily_return:.2%}) is LOWER.")
+print("If we naively multiply: 1.0% × 5 days = 5.0%")
+print(f"But actual compound return is {cumulative_return:.2%} > {average_daily_return:.2%}")
+print("\nThis is because positive returns compound on previous gains.\n")
 
 
 # 5 Bid Ask Spread
@@ -120,28 +120,7 @@ shares = 1000
 spread = ask - bid
 transaction_cost = spread * shares
 
-print(f"For a bid price of ${bid} and an ask price of ${ask}, the spread is ${spread:.2f}, and the total transaction cost is ${transaction_cost:.2f}")
+print("Problem 5: \n")
+# prints
+print(f"For a bid price of ${bid} and an ask price of ${ask}, the spread is ${spread:.2f}, and the total transaction cost is ${transaction_cost:.2f}") 
 
-
-# Problem 4: Compound Returns
-daily_returns = [0.02, -0.01, 0.03, 0.015, -0.005]
-
-# a) Cumulative return (geometric)
-cumulative_return = 1.0
-for r in daily_returns:
-    cumulative_return *= (1 + r)
-cumulative_return -= 1
-
-print(f"a) Cumulative return: {cumulative_return:.4%}")  # 5.9646%
-
-# b) Average daily return (arithmetic)
-average_daily_return = sum(daily_returns) / len(daily_returns)
-print(f"b) Average daily return: {average_daily_return:.4%}")  # 1.2000%
-
-# c) Comparison
-print(f"\nc) The arithmetic average ({average_daily_return:.2%}) is HIGHER.")
-print("If we naively multiply: 1.2% × 5 days = 6.0%")
-print(f"But actual compound return is {cumulative_return:.4%} (5.9646%)")
-print("\nThis difference is called 'volatility drag':")
-print("Losses hurt more than equal-sized gains help when compounding.")
-print("The more volatile the returns, the bigger the drag.")
