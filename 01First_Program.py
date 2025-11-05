@@ -69,20 +69,3 @@ print(f"Expected Value: ${expected_value}")
 print(f"Decision: {'Play' if expected_value >0 else 'Do NOT play'}")
 
 
-# Problem set 1 - 5
-
-# biased coin 55% heads, 45% tails, $1000 bankroll
-# heads = $1 per $1 bet
-# tails = $1 per $1 bet
-
-# E[X] of 1
-# E[X] of 100
-# new BR after one $100 dollar bet if you win.
-
-prob_heads = 0.55
-heads_win = 1
-
-prob_tails = 0.45
-tails_lose = -1
-
-expected_value_1 = (prob_heads * heads_win) + (prob_tails * tails_lose)
